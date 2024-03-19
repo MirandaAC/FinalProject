@@ -1,0 +1,38 @@
+﻿@model List<Book>
+
+@{
+    ViewBag.Title = "My Books";
+}
+
+<h2>My Booksssss</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Created.ToShortDateString()</td>
+                <td>
+                    <a asp-controller="Book" asp-action="Edit"
+                       class="btn btn-primary" asp-route-id="@book.BookId">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Book" asp-action="Delete"
+                       class="btn btn-primary" asp-route-id="@book.BookId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add bookie</a>
